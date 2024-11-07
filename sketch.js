@@ -132,17 +132,16 @@ class Artwork {
     for (let shape of this.shapes) {
       shape.show();
     }
-    
+
     // Draw smiley face if key '2' is pressed
     if (drawSmileyFace) {
-      fill('#FFD700');
-      ellipse(55, 50, 80, 80); // Draw the face
+      
       fill('#000000');
       ellipse(40, 40, 10, 10); // Left eye
       ellipse(70, 40, 10, 10); // Right eye
       noFill();
       stroke('#000000');
-      strokeWeight(2);
+      strokeWeight(4);
       arc(55, 60, 40, 20, 0, PI); // Draw the smile
     }
 
