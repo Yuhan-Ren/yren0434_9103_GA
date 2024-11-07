@@ -1,5 +1,11 @@
 let mondrian;
 let catEyesOpen = false;
+let meowSound;
+
+function preload() {
+  // Load the meow sound
+  meowSound = loadSound('sound/meow.mp3');
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight); // Create canvas based on window size
@@ -23,6 +29,9 @@ function mousePressed() {
   // Check if mouse is inside the cat rectangle
   if (mouseX > 445 && mouseX < 445 + 120 && mouseY > 200 && mouseY < 200 + 60) {
     catEyesOpen = !catEyesOpen; // Toggle cat eyes state
+    if (meowSound) {
+      meowSound.play(); // Play the meow sound
+    }
     redraw(); // Trigger redraw to update the canvas
   }
 }
