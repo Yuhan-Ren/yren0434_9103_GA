@@ -1,4 +1,5 @@
 let mondrian;
+let catEyesOpen = false;
 
 function setup() {
   createCanvas(windowWidth, windowHeight); // Create canvas based on window size
@@ -16,6 +17,14 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight); // Adjust canvas size
   mondrian.scaleShapes(); // Scale shapes to fit new size
   redraw(); // Redraw canvas
+}
+
+function mousePressed() {
+  // Check if mouse is inside the cat rectangle
+  if (mouseX > 445 && mouseX < 445 + 120 && mouseY > 200 && mouseY < 200 + 60) {
+    catEyesOpen = !catEyesOpen; // Toggle cat eyes state
+    redraw(); // Trigger redraw to update the canvas
+  }
 }
 
 class Artwork {
@@ -42,6 +51,12 @@ class Artwork {
     // Display each shape in the shapes array
     for (let shape of this.shapes) {
       shape.show();
+    }
+    // Draw cat eyes if they are open
+    if (catEyesOpen) {
+      fill('#000000');
+      ellipse(470, 230, 10, 10); // Left eye
+      ellipse(520, 230, 10, 10); // Right eye
     }
   }
 }
@@ -183,5 +198,3 @@ function createArtwork() {
   mondrian.addShape(515, 150, 50, 50, '#FFD700', '#000000', 0, 'triangle');
   mondrian.addShape(445, 200, 120, 60, '#FFD700', '#000000', 0, 'rectangle');
 }
-
-
