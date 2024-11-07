@@ -183,3 +183,5 @@ function createArtwork() {
   mondrian.addShape(515, 150, 50, 50, '#FFD700', '#000000', 0, 'triangle');
   mondrian.addShape(445, 200, 120, 60, '#FFD700', '#000000', 0, 'rectangle');
 }
+
+
