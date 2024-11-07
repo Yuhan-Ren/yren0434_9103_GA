@@ -4,6 +4,7 @@ let fish;
 let bubblesToRemove = []; // Array to keep track of bubbles that move out of view
 let catEyesOpen = false;
 let meowSound;
+let drawSmileyFace = false;
 
 function preload() {
   // Load the meow sound
@@ -50,6 +51,10 @@ function keyPressed() {
       let bubble = new Bubble(random(0, 800), random(0, 800), random(5, 15));
       bubbles.push(bubble);
     }
+  }
+  if (key === '2') {
+    drawSmileyFace = true;
+    redraw(); // Trigger redraw to update the canvas
   }
 }
 
@@ -127,12 +132,25 @@ class Artwork {
     for (let shape of this.shapes) {
       shape.show();
     }
+    
+    // Draw smiley face if key '2' is pressed
+    if (drawSmileyFace) {
+      fill('#FFD700');
+      ellipse(55, 50, 80, 80); // Draw the face
+      fill('#000000');
+      ellipse(40, 40, 10, 10); // Left eye
+      ellipse(70, 40, 10, 10); // Right eye
+      noFill();
+      stroke('#000000');
+      strokeWeight(2);
+      arc(55, 60, 40, 20, 0, PI); // Draw the smile
+    }
 
     // Draw cat eyes if they are open
     if (catEyesOpen) {
       fill('#000000');
-      ellipse(470, 230, 10, 10); // Left eye
-      ellipse(520, 230, 10, 10); // Right eye
+      ellipse(470, 230, 10, 25); // Left eye
+      ellipse(520, 230, 10, 25); // Right eye
     }
   }
 }
