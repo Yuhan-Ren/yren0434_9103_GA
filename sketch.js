@@ -1,4 +1,5 @@
 let mondrian;
+let bubbles = []; // Initialize an array to store bubbles
 let catEyesOpen = false;
 let meowSound;
 
@@ -11,11 +12,15 @@ function setup() {
   createCanvas(windowWidth, windowHeight); // Create canvas based on window size
   mondrian = new Artwork(); // Create a new Artwork instance
   createArtwork(); // Generate initial artwork
-  noLoop(); // Prevent continuous drawing
 }
 
 function draw() {
-  background(255);
+  background(255); // Draw background first to avoid overlapping
+  // Draw bubbles if any
+  for (let bubble of bubbles) {
+    bubble.move();
+    bubble.show();
+  }
   mondrian.show(); // Display the artwork
 }
 
@@ -23,6 +28,16 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight); // Adjust canvas size
   mondrian.scaleShapes(); // Scale shapes to fit new size
   redraw(); // Redraw canvas
+}
+
+function keyPressed() {
+  if (key === '1') {
+    // Create multiple bubbles at random positions within the canvas
+    for (let i = 0; i < 10; i++) {
+      let bubble = new Bubble(random(width), random(height), random(10, 50));
+      bubbles.push(bubble);
+    }
+  }
 }
 
 function mousePressed() {
@@ -33,6 +48,25 @@ function mousePressed() {
       meowSound.play(); // Play the meow sound
     }
     redraw(); // Trigger redraw to update the canvas
+  }
+}
+
+class Bubble {
+  constructor(x, y, r) {
+    this.x = x;
+    this.y = y;
+    this.r = r;
+    this.alpha = random(100, 200); // Set random transparency for each bubble
+  }
+
+  move() {
+    this.y -= 2; // Move the bubble upward
+  }
+
+  show() {
+    noStroke();
+    fill(135, 206, 235, this.alpha); // Light blue color with random transparency
+    ellipse(this.x, this.y, this.r * 2);
   }
 }
 
@@ -61,6 +95,7 @@ class Artwork {
     for (let shape of this.shapes) {
       shape.show();
     }
+
     // Draw cat eyes if they are open
     if (catEyesOpen) {
       fill('#000000');
@@ -207,3 +242,5 @@ function createArtwork() {
   mondrian.addShape(515, 150, 50, 50, '#FFD700', '#000000', 0, 'triangle');
   mondrian.addShape(445, 200, 120, 60, '#FFD700', '#000000', 0, 'rectangle');
 }
+
+
