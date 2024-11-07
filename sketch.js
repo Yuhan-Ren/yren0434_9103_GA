@@ -1,5 +1,6 @@
 let mondrian;
 let bubbles = []; // Initialize an array to store bubbles
+let fish;
 let bubblesToRemove = []; // Array to keep track of bubbles that move out of view
 let catEyesOpen = false;
 let meowSound;
@@ -11,18 +12,18 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight); // Create canvas based on window size
+  fish = new Fish(); // Create a new Fish instance
   mondrian = new Artwork(); // Create a new Artwork instance
   createArtwork(); // Generate initial artwork
 }
 
 function draw() {
   background(255); // Draw background first to avoid overlapping
+  fish.move(mouseX, mouseY); // Update fish position based on mouse
+  
   mondrian.show(); // Display the artwork
-  // Draw bubbles if any
-  for (let bubble of bubbles) {
-    bubble.move();
-    bubble.show();
-  }
+  fish.show(); // Display the fish
+  
   // Draw bubbles if any
   for (let bubble of bubbles) {
     bubble.move();
@@ -68,17 +69,36 @@ class Bubble {
     this.x = x;
     this.y = y;
     this.r = r;
-    this.alpha = random(50, 200); // Set higher transparency for each bubble to make them more visible
+    this.alpha = random(150, 255); // Set higher transparency for each bubble to make them more visible
   }
 
   move() {
-    this.y -= 1; // Move the bubble upward
+    this.y -= 1; // Move the bubble upward more slowly
   }
 
   show() {
     noStroke();
     fill(135, 206, 235, this.alpha); // Light blue color with random transparency
     ellipse(this.x, this.y, this.r * 2);
+  }
+}
+
+class Fish {
+  constructor() {
+    this.x = 0;
+    this.y = 0;
+  }
+
+  move(targetX, targetY) {
+    this.x = lerp(this.x, targetX, 0.05); // Smoothly move towards the target x position
+    this.y = lerp(this.y, targetY, 0.05); // Smoothly move towards the target y position
+  }
+
+  show() {
+    fill(255, 165, 0); // Orange color for the fish
+    noStroke();
+    ellipse(this.x, this.y, 30, 15); // Draw the fish body
+    triangle(this.x - 15, this.y, this.x - 30, this.y - 10, this.x - 30, this.y + 10); // Draw the fish tail
   }
 }
 
