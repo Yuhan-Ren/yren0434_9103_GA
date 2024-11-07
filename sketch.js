@@ -1,5 +1,6 @@
 let mondrian;
 let bubbles = []; // Initialize an array to store bubbles
+let bubblesToRemove = []; // Array to keep track of bubbles that move out of view
 let catEyesOpen = false;
 let meowSound;
 
@@ -16,12 +17,23 @@ function setup() {
 
 function draw() {
   background(255); // Draw background first to avoid overlapping
+  mondrian.show(); // Display the artwork
   // Draw bubbles if any
   for (let bubble of bubbles) {
     bubble.move();
     bubble.show();
   }
-  mondrian.show(); // Display the artwork
+  // Draw bubbles if any
+  for (let bubble of bubbles) {
+    bubble.move();
+    bubble.show();
+    if (bubble.y + bubble.r * 2 < 0) {
+      bubblesToRemove.push(bubble);
+    }
+  }
+  // Remove bubbles that moved out of view
+  bubbles = bubbles.filter(bubble => !bubblesToRemove.includes(bubble));
+  bubblesToRemove = [];
 }
 
 function windowResized() {
@@ -34,7 +46,7 @@ function keyPressed() {
   if (key === '1') {
     // Create multiple bubbles at random positions within the canvas
     for (let i = 0; i < 10; i++) {
-      let bubble = new Bubble(random(width), random(height), random(10, 50));
+      let bubble = new Bubble(random(0, 800), random(0, 800), random(5, 15));
       bubbles.push(bubble);
     }
   }
@@ -56,11 +68,11 @@ class Bubble {
     this.x = x;
     this.y = y;
     this.r = r;
-    this.alpha = random(100, 200); // Set random transparency for each bubble
+    this.alpha = random(50, 200); // Set higher transparency for each bubble to make them more visible
   }
 
   move() {
-    this.y -= 2; // Move the bubble upward
+    this.y -= 1; // Move the bubble upward
   }
 
   show() {
