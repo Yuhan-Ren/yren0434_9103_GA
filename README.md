@@ -9,6 +9,7 @@ Major Project
 
 
 **The way to drive animation: Interaction**
+
 I chose the interaction method to add animation effects to the code, including the following: the fish following, the cat opening its eyes, the cat making a sound, and the appearance of a smiley face. These animations are triggered by the user's mouse movement/click and key press, which increases the interactivity and interest of the work. 
 
 
@@ -34,4 +35,5 @@ My inspiration came from a picture of a cat eating fish, so I wanted to include 
 
 
 **Regarding changes to the group code:**
+
 In addition to drawing fish and bubbles, changes have been made to the group code, and interactions have been added between fish, bubbles, cats, and smiley faces.
