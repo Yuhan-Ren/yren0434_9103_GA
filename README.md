@@ -9,8 +9,7 @@ Major Project
 
 
 **The way to drive animation: Interaction**
-
-I chose the interaction method to add animation effects to the code, including the following: the fish following, the cat opening its eyes, the cat making a sound, and the appearance of a smiley face. These animations are triggered by the user's mouse movement/click and key press, which increases the interactivity and interest of the work. 
+-I chose the interaction method to add animation effects to the code, including the following: the fish following, the cat opening its eyes, the cat making a sound, and the appearance of a smiley face. These animations are triggered by the user's mouse movement/click and key press, which increases the interactivity and interest of the work. 
 
 
 **Properties of Animated Images:**
@@ -23,7 +22,7 @@ I chose the interaction method to add animation effects to the code, including t
 
 
 **The animation inspiration reference**
-My inspiration came from a picture of a cat eating fish, so I wanted to include fish elements in my scene, and the fish should be dynamic. My cat would have some cute actions, so I designed the cat's eye opening and closing and the cat's meowing sound. To make the whole animation more childlike, I also added smiley faces. 
+-My inspiration came from a picture of a cat eating fish, so I wanted to include fish elements in my scene, and the fish should be dynamic. My cat would have some cute actions, so I designed the cat's eye opening and closing and the cat's meowing sound. To make the whole animation more childlike, I also added smiley faces. 
 ![An image of a cat](readme.image/58af20c23b78adbcac9e221578e36c93.jpg)
 
 
@@ -35,5 +34,4 @@ My inspiration came from a picture of a cat eating fish, so I wanted to include 
 
 
 **Regarding changes to the group code:**
-
-In addition to drawing fish and bubbles, changes have been made to the group code, and interactions have been added between fish, bubbles, cats, and smiley faces.
+-In addition to drawing fish and bubbles, changes have been made to the group code, and interactions have been added between fish, bubbles, cats, and smiley faces.
